@@ -64,22 +64,20 @@ public:
 	
 	bool isOffline() const { return !m_session.lock(); }
 
-	virtual bool operator<(Peer const& _p) const;
-	
-	/// WIP: Returns current peer rating.
-	int rating() const { return m_rating; }
-	
-	/// Return true if connection attempt should be made to this peer or false if
-	bool shouldReconnect() const;
-	
-	/// Number of times connection has been attempted to peer.
-	int failedAttempts() const { return m_failedAttempts; }
+    /// WIP: Returns current peer rating.
+    int rating() const { return m_rating; }
 
-	/// Reason peer was previously disconnected.
-	DisconnectReason lastDisconnect() const { return m_lastDisconnect; }
-	
-	/// Peer session is noted as useful.
-	void noteSessionGood() { m_failedAttempts = 0; }
+    /// Return true if connection attempt should be made to this peer or false if
+    bool shouldReconnect() const;
+
+    /// Number of times connection has been attempted to peer.
+    int failedAttempts() const { return m_failedAttempts; }
+
+    /// Reason peer was previously disconnected.
+    DisconnectReason lastDisconnect() const { return m_lastDisconnect; }
+
+    /// Peer session is noted as useful.
+    void noteSessionGood() { m_failedAttempts = 0; }
 
 private:
     /// Returns number of seconds to wait until attempting connection, based on attempted connection history.

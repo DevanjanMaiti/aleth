@@ -71,28 +71,6 @@ unsigned Peer::fallbackSeconds() const
 			return 25 + 100 + (m_failedAttempts - 15) * 20;
 	}
 }
-	
-bool Peer::operator<(Peer const& _p) const
-{
-	if (isOffline() != _p.isOffline())
-		return isOffline();
-	else if (isOffline())
-		if (m_lastAttempted == _p.m_lastAttempted)
-			return m_failedAttempts < _p.m_failedAttempts;
-		else
-			return m_lastAttempted < _p.m_lastAttempted;
-		else
-			if (m_score == _p.m_score)
-				if (m_rating == _p.m_rating)
-					if (m_failedAttempts == _p.m_failedAttempts)
-						return id < _p.id;
-					else
-						return m_failedAttempts < _p.m_failedAttempts;
-					else
-						return m_rating < _p.m_rating;
-					else
-						return m_score < _p.m_score;
-}
 
 }
 }
